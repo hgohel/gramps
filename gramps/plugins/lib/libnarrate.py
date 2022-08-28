@@ -43,6 +43,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.plug.report import utils
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -2262,7 +2263,7 @@ class Narrator:
             span = death - birth
             if span and span.is_valid():
                 if span:
-                    age = span.get_repr(dlocale=self._locale)
+                    age = span.format(config.get('preferences.age-display-precision'), False, self._locale)
                     age_index = _AGE_INDEX
                 else:
                     age = 0
