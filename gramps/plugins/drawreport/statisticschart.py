@@ -351,6 +351,8 @@ class Extract:
                             self.get_birth, self.get_month),
             'data_dmonth': ("Death month", _T_("Death month"),
                             self.get_death, self.get_month),
+            'data_mmonth': ("Marriage month", _T_("Marriage month"),
+                            self.get_marriage_handles, self.get_months),
             'data_bplace': ("Birth place", _T_("Birth place"),
                             self.get_birth, self.get_place),
             'data_dplace': ("Death place", _T_("Death place"),
@@ -449,6 +451,15 @@ class Extract:
                 month_names = CAL_TO_LONG_MONTHS_NAMES[date.get_calendar()]
                 return [month_names[month]]
         return [_T_("Date(s) missing")]
+
+    def get_months(self, data):
+        "return months for given (person,event_handles)"
+        mmonths = []
+        person, event_handles = data
+        for event_handle in event_handles:
+            event = self.db.get_event_from_handle(event_handle)
+            mmonths.append(self.get_month(event)[0])
+        return mmonths
 
     def get_place(self, event):
         "return place for given event"
