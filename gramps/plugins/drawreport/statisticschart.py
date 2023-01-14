@@ -357,6 +357,8 @@ class Extract:
                             self.get_birth, self.get_place),
             'data_dplace': ("Death place", _T_("Death place"),
                             self.get_death, self.get_place),
+            'data_bcplace': ("Burial or cremation place", _T_("Burial or cremation place"),
+                            self.get_burial_or_cremation, self.get_place),
             'data_mplace': ("Marriage place", _T_("Marriage place"),
                             self.get_marriage_handles, self.get_places),
             'data_mcount': ("Number of relationships",
@@ -593,6 +595,14 @@ class Extract:
         death_ref = person.get_death_ref()
         if death_ref:
             return self.db.get_event_from_handle(death_ref.ref)
+        return None
+
+    def get_burial_or_cremation(self, person):
+        "return burial or cremation event for given person or None"
+        for event_ref in person.get_event_ref_list():
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if event.get_type() in (EventType.BURIAL, EventType.CREMATION):
+                return event
         return None
 
     def get_child_handles(self, person):
