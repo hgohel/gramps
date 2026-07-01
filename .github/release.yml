@@ -1,0 +1,52 @@
+# Release notes configuration
+changelog:
+  exclude:
+    # labels:
+    #    - skip-changelog
+    authors:
+      - github-actions
+      - github-actions[bot]
+      - dependabot
+      - dependabot[bot]
+
+  categories:
+    - title: New Features
+      labels:
+        - "Type: Enhancement"
+
+    - title: Bug Fixes
+      labels:
+        - "Type: Bug"
+        - "Category: Regression"
+
+    - title: Performance Improvements
+      labels:
+        - "Category: Performance"
+        - "Category: Reduce complexity"
+
+    - title: Translations
+      labels:
+        - "Type: Translation"
+
+    # - title: Documentation
+    #   labels:
+    #     - documentation
+    #     - docs
+
+    - title: Code Quality
+      labels:
+        - "Type: Code Quality"
+        - "Type: Unit Test"
+
+    - title: Infrastructure
+      labels:
+        - "Type: Infrastructure"
+
+    # - title: Dependencies
+    #   labels:
+    #     - dependencies
+    #     - deps
+
+    - title: Other Changes
+      labels:
+        - "*"
